@@ -32,6 +32,9 @@ public partial class Program
         services.AddScoped<IRepository<Employee>, Repository<Employee>>();
         services.AddScoped<IEmployeeService, EmployeeService>();
 
+        services.AddScoped<IRepository<Item>, Repository<Item>>();
+        services.AddScoped<IItemService, ItemService>();
+
         // Entity service registrations will be added here as they are implemented.
     }
 }
