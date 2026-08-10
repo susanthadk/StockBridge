@@ -47,5 +47,5 @@ public partial class CreditSaleSummary
 
     public bool IsActive { get; set; }
 
-    public virtual SalesRepresentativeMaster SalesRepresentativeresentativeCodeNavigation { get; set; } = null!;
+    public virtual SalesRepresentative SalesRepresentativeresentativeCodeNavigation { get; set; } = null!;
 }

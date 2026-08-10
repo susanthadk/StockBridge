@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 
-namespace StockBridge.Domain.Entities;
+namespace StockBridge.Application.DTOs.SalesRepresentatives;
 
-public partial class SalesRepresentativeMaster
+public class SalesRepresentativeDto
 {
-    public int SalesRepresentativeMasterId { get; set; }
+    public int SalesRepresentativeId { get; set; }
 
-    public string SalesRepresentativeresentativeCode { get; set; } = null!;
+    public string SalesRepresentativeresentativeCode { get; set; } = string.Empty;
 
-    public string CompanyCode { get; set; } = null!;
+    public string CompanyCode { get; set; } = string.Empty;
 
     public string? MainLocationCode { get; set; }
 
@@ -42,8 +41,4 @@ public partial class SalesRepresentativeMaster
     public DateTime? ModifiedOn { get; set; }
 
     public bool IsActive { get; set; }
-
-    public virtual ICollection<CreditSaleSummary> CreditSaleSummaries { get; set; } = new List<CreditSaleSummary>();
-
-    public virtual ICollection<SalesRepresentativeStockOnHand> SalesRepresentativeStockOnHands { get; set; } = new List<SalesRepresentativeStockOnHand>();
 }

@@ -4,11 +4,11 @@ using StockBridge.Domain.Entities;
 
 namespace StockBridge.Infrastructure.Persistence.ModelConfiguration;
 
-public class SalesRepresentativeMasterConfiguration : IEntityTypeConfiguration<SalesRepresentativeMaster>
+public class SalesRepresentativeConfiguration : IEntityTypeConfiguration<SalesRepresentative>
 {
-    public void Configure(EntityTypeBuilder<SalesRepresentativeMaster> entity)
+    public void Configure(EntityTypeBuilder<SalesRepresentative> entity)
     {
-        entity.ToTable("SalesRepresentativeMaster");
+        entity.ToTable("SalesRepresentative");
 
         entity.HasIndex(e => e.SalesRepresentativeresentativeCode, "UQ_SalesRepresentativeMaster_BusinessKey").IsUnique();
 

@@ -33,7 +33,7 @@ public partial class SalesRepresentativeStockOnHand
 
     public virtual Item ItemCodeNavigation { get; set; } = null!;
 
-    public virtual SalesRepresentativeMaster SalesRepresentativeresentativeCodeNavigation { get; set; } = null!;
+    public virtual SalesRepresentative SalesRepresentativeresentativeCodeNavigation { get; set; } = null!;
 
     public virtual Stock StockCodeNavigation { get; set; } = null!;
 }

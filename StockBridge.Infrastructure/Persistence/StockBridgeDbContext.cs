@@ -95,7 +95,7 @@ public partial class StockBridgeDbContext : DbContext
 
     public virtual DbSet<SalesChequeTemporary> SalesChequeTemporaries { get; set; }
 
-    public virtual DbSet<SalesRepresentativeMaster> SalesRepresentativeMasters { get; set; }
+    public virtual DbSet<SalesRepresentative> SalesRepresentatives { get; set; }
 
     public virtual DbSet<SalesRepresentativeStockOnHand> SalesRepresentativeStockOnHands { get; set; }
 
@@ -182,7 +182,7 @@ public partial class StockBridgeDbContext : DbContext
         modelBuilder.ApplyConfiguration(new SalaryDetailConfiguration());
         modelBuilder.ApplyConfiguration(new SalesChequeConfiguration());
         modelBuilder.ApplyConfiguration(new SalesChequeTemporaryConfiguration());
-        modelBuilder.ApplyConfiguration(new SalesRepresentativeMasterConfiguration());
+        modelBuilder.ApplyConfiguration(new SalesRepresentativeConfiguration());
         modelBuilder.ApplyConfiguration(new SalesRepresentativeStockOnHandConfiguration());
         modelBuilder.ApplyConfiguration(new SalesTemporaryConfiguration());
         modelBuilder.ApplyConfiguration(new SignOnConfiguration());
