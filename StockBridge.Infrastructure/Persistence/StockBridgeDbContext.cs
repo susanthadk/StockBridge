@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using StockBridge.Domain.Entities;
 using StockBridge.Domain.Interfaces;
+using StockBridge.Domain.Models;
 using System.Collections.Concurrent;
 using System.Data;
 
