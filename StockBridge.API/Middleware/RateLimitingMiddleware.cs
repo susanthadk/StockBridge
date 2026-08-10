@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System.Collections.Concurrent;
 
@@ -8,14 +9,18 @@ namespace StockBridge.API.Middleware
     {
         private readonly RequestDelegate _next;
         private static readonly ConcurrentDictionary<string, List<DateTime>> _requests = new();
-        private readonly int _limit = 5; // max requests
-        private readonly TimeSpan _window = TimeSpan.FromSeconds(10); // per 10 seconds
+        private readonly int _limit; // max requests
+        private readonly TimeSpan _window; // per window
         private readonly ILogger<RateLimitingMiddleware> _logger;
 
-        public RateLimitingMiddleware(RequestDelegate next, ILogger<RateLimitingMiddleware> logger)
+        public RateLimitingMiddleware(RequestDelegate next, IConfiguration configuration, ILogger<RateLimitingMiddleware> logger)
         {
             _next = next;
             _logger = logger;
+
+            var rateLimiting = configuration.GetSection("RateLimiting");
+            _limit = rateLimiting.GetValue("Limit", 5);
+            _window = TimeSpan.FromSeconds(rateLimiting.GetValue("WindowSeconds", 10));
         }
 
         public async Task InvokeAsync(HttpContext context)
@@ -30,7 +35,7 @@ namespace StockBridge.API.Middleware
                 lock (requests)
                 {
                     requests.RemoveAll(x => x < now - _window); // remove old requests
-                    requests.Add(now);
+                    requests.Add(now); // record the current request BEFORE the limit check
                 }
 
                 if (requests.Count > _limit)

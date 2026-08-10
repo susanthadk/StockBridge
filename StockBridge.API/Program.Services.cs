@@ -17,6 +17,9 @@ public partial class Program
         services.AddScoped<IRepository<Account>, Repository<Account>>();
         services.AddScoped<IAccountService, AccountService>();
 
+        services.AddScoped<IRepository<Category>, Repository<Category>>();
+        services.AddScoped<ICategoryService, CategoryService>();
+
         // Entity service registrations will be added here as they are implemented.
     }
 }
