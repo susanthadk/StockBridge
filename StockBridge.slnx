@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="StockBridge.API/StockBridge.API.csproj" />
+  <Project Path="StockBridge.Application/StockBridge.Application.csproj" />
+  <Project Path="StockBridge.Domain/StockBridge.Domain.csproj" />
+  <Project Path="StockBridge.Infrastructure/StockBridge.Infrastructure.csproj" />
+</Solution>
