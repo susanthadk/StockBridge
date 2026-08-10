@@ -56,6 +56,9 @@ public partial class Program
         services.AddScoped<IRepository<HotItem>, Repository<HotItem>>();
         services.AddScoped<IHotItemService, HotItemService>();
 
+        services.AddScoped<IRepository<MultiItem>, Repository<MultiItem>>();
+        services.AddScoped<IMultiItemService, MultiItemService>();
+
         // Entity service registrations will be added here as they are implemented.
     }
 }
