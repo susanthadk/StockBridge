@@ -38,6 +38,9 @@ public partial class Program
         services.AddScoped<IRepository<MainLocation>, Repository<MainLocation>>();
         services.AddScoped<IMainLocationService, MainLocationService>();
 
+        services.AddScoped<IRepository<Supplier>, Repository<Supplier>>();
+        services.AddScoped<ISupplierService, SupplierService>();
+
         // Entity service registrations will be added here as they are implemented.
     }
 }
