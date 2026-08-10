@@ -53,6 +53,9 @@ public partial class Program
         services.AddScoped<IRepository<DayOff>, Repository<DayOff>>();
         services.AddScoped<IDayOffService, DayOffService>();
 
+        services.AddScoped<IRepository<HotItem>, Repository<HotItem>>();
+        services.AddScoped<IHotItemService, HotItemService>();
+
         // Entity service registrations will be added here as they are implemented.
     }
 }
