@@ -50,6 +50,9 @@ public partial class Program
         services.AddScoped<IRepository<AreaRoute>, Repository<AreaRoute>>();
         services.AddScoped<IAreaRouteService, AreaRouteService>();
 
+        services.AddScoped<IRepository<DayOff>, Repository<DayOff>>();
+        services.AddScoped<IDayOffService, DayOffService>();
+
         // Entity service registrations will be added here as they are implemented.
     }
 }
