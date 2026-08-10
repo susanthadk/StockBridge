@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace StockBridge.API.Models;
+namespace StockBridge.Domain.Entities;
 
 public partial class FormulaHeader
 {

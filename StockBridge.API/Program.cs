@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Scalar.AspNetCore;
+using StockBridge.API.Data;
 using StockBridge.API.Middleware;
 using StockBridge.Application.Common;
 using StockBridge.Domain.Interfaces;

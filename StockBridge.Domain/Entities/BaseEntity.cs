@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace StockBridge.Domain.Models;
+namespace StockBridge.Domain.Entities;
 
 public class BaseEntity
 {
