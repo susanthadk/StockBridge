@@ -10,6 +10,8 @@ public class ProgramsConfiguration : IEntityTypeConfiguration<Programs>
     {
         entity.ToTable("Program");
 
+        entity.HasKey(e => e.ProgramId);
+
         entity.HasIndex(e => e.ProgramCode, "UQ_Program_BusinessKey").IsUnique();
 
         entity.Property(e => e.CreatedOn).HasDefaultValueSql("(sysutcdatetime())", "DF_Program_CreatedOn");

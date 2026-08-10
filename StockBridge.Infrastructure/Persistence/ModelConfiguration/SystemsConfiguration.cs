@@ -10,6 +10,8 @@ public class SystemsConfiguration : IEntityTypeConfiguration<Systems>
     {
         entity.ToTable("Systems");
 
+        entity.HasKey(e => e.SystemId);
+
         entity.HasIndex(e => new { e.SystemRecordType, e.SystemRecordNumber }, "UQ_System_BusinessKey").IsUnique();
 
         entity.Property(e => e.CreatedOn).HasDefaultValueSql("(sysutcdatetime())", "DF_System_CreatedOn");
