@@ -65,6 +65,9 @@ public partial class Program
         services.AddScoped<IGoodsReceiptTemporaryRepository, GoodsReceiptTemporaryRepository>();
         services.AddScoped<IGoodsReceiptTemporaryService, GoodsReceiptTemporaryService>();
 
+        services.AddScoped<IInventoryTransactionRepository, InventoryTransactionRepository>();
+        services.AddScoped<IInventoryTransactionService, InventoryTransactionService>();
+
         // Entity service registrations will be added here as they are implemented.
     }
 }
