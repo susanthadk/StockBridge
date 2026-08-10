@@ -47,6 +47,9 @@ public partial class Program
         services.AddScoped<IRepository<AccountInformation>, Repository<AccountInformation>>();
         services.AddScoped<IAccountInformationService, AccountInformationService>();
 
+        services.AddScoped<IRepository<AreaRoute>, Repository<AreaRoute>>();
+        services.AddScoped<IAreaRouteService, AreaRouteService>();
+
         // Entity service registrations will be added here as they are implemented.
     }
 }
