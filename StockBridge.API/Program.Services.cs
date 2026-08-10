@@ -20,6 +20,9 @@ public partial class Program
         services.AddScoped<IRepository<Category>, Repository<Category>>();
         services.AddScoped<ICategoryService, CategoryService>();
 
+        services.AddScoped<IRepository<Company>, Repository<Company>>();
+        services.AddScoped<ICompanyService, CompanyService>();
+
         // Entity service registrations will be added here as they are implemented.
     }
 }
