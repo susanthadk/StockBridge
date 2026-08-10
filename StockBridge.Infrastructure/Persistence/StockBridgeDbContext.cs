@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using StockBridge.Domain.Entities;
 using StockBridge.Domain.Interfaces;
+using StockBridge.Infrastructure.Persistence.ModelConfiguration;
 using System.Data;
 
 namespace StockBridge.API.Data;
@@ -140,18 +141,8 @@ public partial class StockBridgeDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Account>(entity =>
-        {
-            entity.ToTable("Account");
-
-            entity.HasIndex(e => new { e.AccountNumber, e.SubCode }, "UQ_Account_BusinessKey").IsUnique();
-
-            entity.Property(e => e.AccountNumber).HasMaxLength(10);
-            entity.Property(e => e.BankDescriptioncription).HasMaxLength(30);
-            entity.Property(e => e.CreatedOn).HasDefaultValueSql("(sysutcdatetime())", "DF_Account_CreatedOn");
-            entity.Property(e => e.IsActive).HasDefaultValue(true, "DF_Account_IsActive");
-            entity.Property(e => e.SubCode).HasMaxLength(10);
-        });
+        base.OnModelCreating(modelBuilder);
+        modelBuilder.ApplyConfiguration(new AccountConfiguration());
 
         modelBuilder.Entity<AccountInformation>(entity =>
         {
