@@ -44,6 +44,9 @@ public partial class Program
         services.AddScoped<IRepository<SalesRepresentative>, Repository<SalesRepresentative>>();
         services.AddScoped<ISalesRepresentativeService, SalesRepresentativeService>();
 
+        services.AddScoped<IRepository<AccountInformation>, Repository<AccountInformation>>();
+        services.AddScoped<IAccountInformationService, AccountInformationService>();
+
         // Entity service registrations will be added here as they are implemented.
     }
 }
