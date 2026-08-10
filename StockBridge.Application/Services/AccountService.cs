@@ -28,182 +28,146 @@ public class AccountService : IAccountService
         _logger = logger;
     }
 
-    public async Task<ResponseInfo<List<AccountDto>?>> GetAllAccounts(CancellationToken cancellation = default)
+    public async Task<ResponseInfo<List<AccountDto>?>> GetAllAccounts(CancellationToken cancellationToken = default)
     {
-        try
+        _logger.LogInformation("Fetching all Accounts.");
+
+        var result = await _accountRepository.GetAllAsync();
+
+        if (result == null || !result.Any())
         {
-            _logger.LogInformation("Fetching all Accounts...");
-            var result = await _accountRepository.GetAllAsync();
-            var accounts = result?.ToList();
-            if (accounts == null || accounts.Count == 0)
-            {
-                _logger.LogWarning("No Account found.");
-                return ResponseInfo<List<AccountDto>?>.Failure("No Account found.", HttpStatusCode.NotFound);
-            }
-            var dtos = _mapper.Map<List<AccountDto>>(accounts);
-            _logger.LogInformation($"{dtos.Count} Account(s) retrieved successfully.");
-            return ResponseInfo<List<AccountDto>?>.Success(dtos, HttpStatusCode.OK, "Account retrieved successfully.");
+            _logger.LogInformation("{ClassName} - {MethodName} Information: No Accounts found.", nameof(AccountService), nameof(GetAllAccounts));
+            return ResponseInfo<List<AccountDto>?>.Success(new List<AccountDto>(), HttpStatusCode.NoContent, "No Accounts found.");
         }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Error fetching Account");
-            return ResponseInfo<List<AccountDto>?>.Failure("An error occurred while retrieving Account.", HttpStatusCode.InternalServerError);
-        }
+
+        var dtos = _mapper.Map<List<AccountDto>>(result);
+
+        _logger.LogInformation("{ClassName} - {MethodName} Information: Retrieved {Count} Accounts.", nameof(AccountService), nameof(GetAllAccounts), dtos.Count);
+
+        return ResponseInfo<List<AccountDto>?>.Success(dtos, HttpStatusCode.OK, "Accounts retrieved successfully.");
     }
 
-    public async Task<ResponseInfo<List<AccountDto>?>> GetAllAccounts(int pageNo, int pageSize, CancellationToken cancellation = default)
+    public async Task<ResponseInfo<List<AccountDto>?>> GetAllAccounts(int pageNo, int pageSize, CancellationToken cancellationToken = default)
     {
-        try
+        _logger.LogInformation("Fetching all Accounts. Page: {PageNo}, Size: {PageSize}", pageNo, pageSize);
+
+        var result = await _accountRepository.GetPagedAsync(pageNo, pageSize);
+
+        if (result == null || !result.Any())
         {
-            _logger.LogInformation($"Fetching all Accounts... page: {pageNo}, size: {pageSize}");
-            var result = await _accountRepository.GetPagedAsync(pageNo, pageSize);
-            var accounts = result?.ToList();
-            if (accounts == null || accounts.Count == 0)
-            {
-                _logger.LogWarning("No Account found.");
-                return ResponseInfo<List<AccountDto>?>.Failure("No Account found.", HttpStatusCode.NotFound);
-            }
-            var dtos = _mapper.Map<List<AccountDto>>(accounts);
-            _logger.LogInformation($"{dtos.Count} Account(s) retrieved successfully.");
-            return ResponseInfo<List<AccountDto>?>.Success(dtos, HttpStatusCode.OK, "Account retrieved successfully.");
+            _logger.LogInformation("{ClassName} - {MethodName} Information: No Accounts found.", nameof(AccountService), nameof(GetAllAccounts));
+            return ResponseInfo<List<AccountDto>?>.Success(new List<AccountDto>(), HttpStatusCode.NoContent, "No Accounts found.");
         }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Error fetching Account");
-            return ResponseInfo<List<AccountDto>?>.Failure("An error occurred while retrieving Account.", HttpStatusCode.InternalServerError);
-        }
+
+        var dtos = _mapper.Map<List<AccountDto>>(result);
+
+        _logger.LogInformation("{ClassName} - {MethodName} Information: Retrieved {Count} Accounts.", nameof(AccountService), nameof(GetAllAccounts), dtos.Count);
+
+        return ResponseInfo<List<AccountDto>?>.Success(dtos, HttpStatusCode.OK, "Accounts retrieved successfully.");
     }
 
-    public async Task<ResponseInfo<AccountDto?>> GetAccountById(int id, CancellationToken cancellation = default)
+    public async Task<ResponseInfo<AccountDto?>> GetAccountById(int id, CancellationToken cancellationToken = default)
     {
-        try
+        _logger.LogInformation("Fetching Account Id: {AccountId}", id);
+
+        var result = await _accountRepository.GetByIdAsync(id, nameof(Account.AccountId));
+
+        if (result == null)
         {
-            _logger.LogInformation("Fetching Account by Id...");
-            var result = await _accountRepository.GetByIdAsync(id, "AccountId");
-            if (result == null)
-            {
-                _logger.LogWarning("No Account found.");
-                return ResponseInfo<AccountDto?>.Failure("No Account found.", HttpStatusCode.NotFound);
-            }
-            var dto = _mapper.Map<AccountDto>(result);
-            _logger.LogInformation("Account retrieved successfully.");
-            return ResponseInfo<AccountDto?>.Success(dto, HttpStatusCode.OK, "Account retrieved successfully.");
+            _logger.LogInformation("{ClassName} - {MethodName} Information: Account not found Id: {AccountId}.", nameof(AccountService), nameof(GetAccountById), id);
+            return ResponseInfo<AccountDto?>.Success(null, HttpStatusCode.NoContent, "Account not found.");
         }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Error fetching Account");
-            return ResponseInfo<AccountDto?>.Failure("An error occurred while retrieving Account.", HttpStatusCode.InternalServerError);
-        }
+
+        var dto = _mapper.Map<AccountDto>(result);
+
+        _logger.LogInformation("{ClassName} - {MethodName} Information: Retrieved Account Id: {AccountId}.", nameof(AccountService), nameof(GetAccountById), id);
+
+        return ResponseInfo<AccountDto?>.Success(dto, HttpStatusCode.OK, "Account retrieved successfully.");
     }
 
-    public async Task<ResponseInfo<List<AccountDto>?>> SearchAccount(string fieldName, string searchString, CancellationToken cancellation = default)
+    public async Task<ResponseInfo<List<AccountDto>?>> SearchAccount(string fieldName, string searchString, CancellationToken cancellationToken = default)
     {
-        try
+        _logger.LogInformation("Searching Accounts by {FieldName}: {SearchString}", fieldName, searchString);
+
+        var result = await _accountRepository.GetByFieldAsync(fieldName, searchString);
+
+        if (result == null || !result.Any())
         {
-            _logger.LogInformation($"Fetching Account by {fieldName}...");
-            var result = await _accountRepository.GetByFieldAsync(fieldName, searchString);
-            var accounts = result?.ToList();
-            if (accounts == null || accounts.Count == 0)
-            {
-                _logger.LogWarning("No Account found.");
-                return ResponseInfo<List<AccountDto>?>.Failure("No Account found.", HttpStatusCode.NotFound);
-            }
-            var dtos = _mapper.Map<List<AccountDto>>(accounts);
-            _logger.LogInformation($"{dtos.Count} Account(s) retrieved successfully.");
-            return ResponseInfo<List<AccountDto>?>.Success(dtos, HttpStatusCode.OK, "Account retrieved successfully.");
+            _logger.LogInformation("{ClassName} - {MethodName} Information: No Accounts found.", nameof(AccountService), nameof(SearchAccount));
+            return ResponseInfo<List<AccountDto>?>.Success(new List<AccountDto>(), HttpStatusCode.NoContent, "No Accounts found.");
         }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Error searching Account");
-            return ResponseInfo<List<AccountDto>?>.Failure("An error occurred while searching Account.", HttpStatusCode.InternalServerError);
-        }
+
+        var dtos = _mapper.Map<List<AccountDto>>(result);
+
+        _logger.LogInformation("{ClassName} - {MethodName} Information: Retrieved {Count} Accounts.", nameof(AccountService), nameof(SearchAccount), dtos.Count);
+
+        return ResponseInfo<List<AccountDto>?>.Success(dtos, HttpStatusCode.OK, "Accounts retrieved successfully.");
     }
 
-    public async Task<ResponseInfo<AccountDto?>> AddAccount(AccountDto dto, CancellationToken cancellation = default)
+    public async Task<ResponseInfo<AccountDto?>> AddAccount(AccountDto dto, CancellationToken cancellationToken = default)
     {
-        if (dto == null) throw new ArgumentNullException(nameof(dto));
-        try
+        _logger.LogInformation("Adding Account.");
+
+        var existing = await _accountRepository.GetByFieldAsync("AccountNumber", dto.AccountNumber);
+        if (existing?.Any(x => x.SubCode == dto.SubCode) == true)
         {
-            _logger.LogInformation("Creating new Account...");
-
-            var existing = await _accountRepository.GetByFieldAsync("AccountNumber", dto.AccountNumber);
-            if (existing?.Any(x => x.SubCode == dto.SubCode) == true)
-            {
-                _logger.LogWarning("Account already exists with the same Account Number and Sub Code.");
-                return ResponseInfo<AccountDto?>.Failure("Account already exists with the same Account Number and Sub Code.", HttpStatusCode.BadRequest);
-            }
-
-            var entity = _mapper.Map<Account>(dto);
-            entity.CreatedBy = _currentUserService.UserId ?? 0;
-            entity.CreatedOn = DateTime.UtcNow;
-            entity.IsActive = true;
-
-            var result = await _accountRepository.AddAsync(entity);
-            if (result == null)
-            {
-                _logger.LogWarning("Account not created.");
-                return ResponseInfo<AccountDto?>.Failure("Account not created.", HttpStatusCode.BadRequest);
-            }
-
-            var resultDto = _mapper.Map<AccountDto>(result);
-            _logger.LogInformation("Account created successfully.");
-            return ResponseInfo<AccountDto?>.Success(resultDto, HttpStatusCode.Created, "Account created successfully.");
+            _logger.LogInformation("{ClassName} - {MethodName} Information: Account already exists with the same Account Number and Sub Code.", nameof(AccountService), nameof(AddAccount));
+            return ResponseInfo<AccountDto?>.Failure("Account already exists with the same Account Number and Sub Code.", HttpStatusCode.BadRequest);
         }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Error creating Account");
-            return ResponseInfo<AccountDto?>.Failure("An error occurred while creating Account.", HttpStatusCode.InternalServerError);
-        }
+
+        var entity = _mapper.Map<Account>(dto);
+        entity.CreatedBy = _currentUserService.UserId ?? 0;
+        entity.CreatedOn = DateTime.UtcNow;
+        entity.IsActive = true;
+
+        var result = await _accountRepository.AddAsync(entity);
+
+        var resultDto = _mapper.Map<AccountDto>(result);
+
+        _logger.LogInformation("{ClassName} - {MethodName} Information: Account added successfully AccountId: {AccountId}.", nameof(AccountService), nameof(AddAccount), result.AccountId);
+
+        return ResponseInfo<AccountDto?>.Success(resultDto, HttpStatusCode.Created, "Account added successfully.");
     }
 
-    public async Task<ResponseInfo<bool>> UpdateAccount(AccountDto dto, CancellationToken cancellation = default)
+    public async Task<ResponseInfo<bool>> UpdateAccount(AccountDto dto, CancellationToken cancellationToken = default)
     {
-        if (dto == null) throw new ArgumentNullException(nameof(dto));
-        try
-        {
-            _logger.LogInformation("Updating Account...");
-            var isExists = await _accountRepository.IsExistByIdAsync(dto.AccountId, "AccountId");
-            if (!isExists)
-            {
-                _logger.LogWarning("Selected Account not found.");
-                return ResponseInfo<bool>.Failure("Selected Account not found.", HttpStatusCode.NotFound);
-            }
+        _logger.LogInformation("Updating Account Id: {AccountId}", dto.AccountId);
 
-            var entity = _mapper.Map<Account>(dto);
-            entity.ModifiedBy = _currentUserService.UserId;
-            entity.ModifiedOn = DateTime.UtcNow;
+        var isExists = await _accountRepository.IsExistByIdAsync(dto.AccountId, nameof(Account.AccountId));
 
-            await _accountRepository.UpdateAsync(entity);
-            _logger.LogInformation("Account updated successfully.");
-            return ResponseInfo<bool>.Success(true, HttpStatusCode.OK, "Account updated successfully.");
-        }
-        catch (Exception ex)
+        if (!isExists)
         {
-            _logger.LogError(ex, "Error updating Account");
-            return ResponseInfo<bool>.Failure("An error occurred while updating Account.", HttpStatusCode.InternalServerError);
+            _logger.LogInformation("{ClassName} - {MethodName} Information: Account not found Id: {AccountId}.", nameof(AccountService), nameof(UpdateAccount), dto.AccountId);
+            return ResponseInfo<bool>.Failure("Account not found.", HttpStatusCode.NotFound);
         }
+
+        var entity = _mapper.Map<Account>(dto);
+        entity.ModifiedBy = _currentUserService.UserId;
+        entity.ModifiedOn = DateTime.UtcNow;
+
+        await _accountRepository.UpdateAsync(entity);
+
+        _logger.LogInformation("{ClassName} - {MethodName} Information: Account updated Id: {AccountId}.", nameof(AccountService), nameof(UpdateAccount), dto.AccountId);
+
+        return ResponseInfo<bool>.Success(true, HttpStatusCode.OK, "Account updated successfully.");
     }
 
-    public async Task<ResponseInfo<bool>> DeleteAccount(int id, CancellationToken cancellation = default)
+    public async Task<ResponseInfo<bool>> DeleteAccount(int id, CancellationToken cancellationToken = default)
     {
-        try
-        {
-            _logger.LogInformation("Deleting Account...");
-            var isExists = await _accountRepository.IsExistByIdAsync(id, "AccountId");
-            if (!isExists)
-            {
-                _logger.LogWarning("Selected Account not found.");
-                return ResponseInfo<bool>.Failure("Selected Account not found.", HttpStatusCode.NotFound);
-            }
+        _logger.LogInformation("Deleting Account Id: {AccountId}", id);
 
-            await _accountRepository.DeleteAsync(id, "AccountId");
-            _logger.LogInformation("Account deleted successfully.");
-            return ResponseInfo<bool>.Success(true, HttpStatusCode.OK, "Account deleted successfully.");
-        }
-        catch (Exception ex)
+        var isExists = await _accountRepository.IsExistByIdAsync(id, nameof(Account.AccountId));
+
+        if (!isExists)
         {
-            _logger.LogError(ex, "Error deleting Account");
-            return ResponseInfo<bool>.Failure("An error occurred while deleting Account.", HttpStatusCode.InternalServerError);
+            _logger.LogInformation("{ClassName} - {MethodName} Information: Account not found Id: {AccountId}.", nameof(AccountService), nameof(DeleteAccount), id);
+            return ResponseInfo<bool>.Failure("Account not found.", HttpStatusCode.NotFound);
         }
+
+        await _accountRepository.DeleteAsync(id, nameof(Account.AccountId));
+
+        _logger.LogInformation("{ClassName} - {MethodName} Information: Account deleted Id: {AccountId}.", nameof(AccountService), nameof(DeleteAccount), id);
+
+        return ResponseInfo<bool>.Success(true, HttpStatusCode.OK, "Account deleted successfully.");
     }
 }
