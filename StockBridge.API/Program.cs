@@ -76,13 +76,13 @@ public partial class Program
 
         app.UseAuthorization();
 
-        app.UseUserLogging();
+        //app.UseUserLogging();
 
         app.UseGlobalExceptionHandler();
 
-        app.UseRequestThrottling();
+        //app.UseRequestThrottling();
 
-        app.UseRateLimiting();
+        //app.UseRateLimiting();
 
         app.MapControllers();
         app.MapGet("/", () => Results.Redirect("/scalar"));

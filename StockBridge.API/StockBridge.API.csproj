@@ -7,6 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Middleware\RateLimitingMiddleware.cs" />
+    <Compile Remove="Middleware\RateLimitingMiddlewareExtensions.cs" />
+    <Compile Remove="Middleware\RequestThrottlingMiddleware.cs" />
+    <Compile Remove="Middleware\RequestThrottlingMiddlewareExtensions.cs" />
+    <Compile Remove="Middleware\UserLoggingMiddleware.cs" />
+    <Compile Remove="Middleware\UserLoggingMiddlewareExtensions.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.10">
