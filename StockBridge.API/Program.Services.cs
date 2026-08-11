@@ -68,6 +68,9 @@ public partial class Program
         services.AddScoped<IInventoryTransactionRepository, InventoryTransactionRepository>();
         services.AddScoped<IInventoryTransactionService, InventoryTransactionService>();
 
+        services.AddScoped<IFormulaRepository, FormulaRepository>();
+        services.AddScoped<IFormulaService, FormulaService>();
+
         // Entity service registrations will be added here as they are implemented.
     }
 }
