@@ -50,6 +50,7 @@ namespace StockBridge.API.Middleware
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Unhandled exception occurred.");
+                throw new Exception(ex.Message);
             }
         }
     }

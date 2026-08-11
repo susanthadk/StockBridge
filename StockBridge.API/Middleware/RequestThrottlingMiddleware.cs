@@ -37,10 +37,6 @@ namespace StockBridge.API.Middleware
             {
                 await _next(context);
             }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Unhandled exception occurred.");
-            }
             finally
             {
                 _semaphore.Release();

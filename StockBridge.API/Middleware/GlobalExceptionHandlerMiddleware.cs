@@ -42,7 +42,43 @@ public class GlobalExceptionHandlerMiddleware(RequestDelegate next, ILogger<Glob
         if (ex is DbUpdateException)
             return (HttpStatusCode.BadRequest, GetFriendlyDbUpdateMessage(ex));
 
+        if (IsStringTruncation(ex))
+            return (HttpStatusCode.BadRequest, GetTruncationMessage(ex));
+
         return (HttpStatusCode.InternalServerError, "An unexpected error occurred.");
+    }
+
+    private static bool IsStringTruncation(Exception ex)
+    {
+        var message = GetFullExceptionMessage(ex);
+        return message.Contains("String or binary data would be truncated", StringComparison.OrdinalIgnoreCase)
+            || message.Contains("will be truncated", StringComparison.OrdinalIgnoreCase)
+            || message.Contains("too long", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static string GetTruncationMessage(Exception ex)
+    {
+        var message = GetFullExceptionMessage(ex);
+        var columnMatch = Regex.Match(message, @"column\s+['""]?(.+?)['""]?\s+in table", RegexOptions.IgnoreCase);
+        var valueMatch = Regex.Match(message, @"value of length\s+(\d+)\s+exceeds the maximum length of\s+(\d+)");
+
+        if (valueMatch.Success)
+        {
+            var column = columnMatch.Success ? columnMatch.Groups[1].Value.Trim() : null;
+            var columnInfo = string.IsNullOrEmpty(column) ? "" : $" for the field '{column}'";
+            return $"The value is too long{columnInfo}. Maximum allowed length is {valueMatch.Groups[2].Value} characters, but the provided value is {valueMatch.Groups[1].Value} characters.";
+        }
+
+        return "One or more values are too long and exceed the maximum allowed length.";
+    }
+
+    private static string GetFullExceptionMessage(Exception ex)
+    {
+        var message = ex.InnerException?.Message ?? ex.Message;
+        if (ex is DbUpdateException && ex.InnerException?.InnerException != null)
+            message = ex.InnerException.InnerException.Message;
+
+        return message;
     }
 
     private static string GetFriendlyDbUpdateMessage(Exception ex)
@@ -58,6 +94,9 @@ public class GlobalExceptionHandlerMiddleware(RequestDelegate next, ILogger<Glob
 
             return "A record with the same information already exists.";
         }
+
+        if (IsStringTruncation(ex))
+            return GetTruncationMessage(ex);
 
         return "An unexpected error occurred while saving the record.";
     }
