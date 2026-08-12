@@ -43,6 +43,8 @@ public partial class StockBridgeDbContext : DbContext
 
     public virtual DbSet<DayOff> DayOffs { get; set; }
 
+    public virtual DbSet<DeliveryMethod> DeliveryMethods { get; set; }
+
     public virtual DbSet<Department> Departments { get; set; }
 
     public virtual DbSet<DocumentNumber> DocumentNumbers { get; set; }
@@ -119,6 +121,8 @@ public partial class StockBridgeDbContext : DbContext
 
     public virtual DbSet<Supplier> Suppliers { get; set; }
 
+    public virtual DbSet<SupplierType> SupplierTypes { get; set; }
+
     public virtual DbSet<Systems> Systems { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
@@ -156,6 +160,7 @@ public partial class StockBridgeDbContext : DbContext
         modelBuilder.ApplyConfiguration(new CreditSaleSummaryConfiguration());
         modelBuilder.ApplyConfiguration(new CustomerConfiguration());
         modelBuilder.ApplyConfiguration(new DayOffConfiguration());
+        modelBuilder.ApplyConfiguration(new DeliveryMethodConfiguration());
         modelBuilder.ApplyConfiguration(new DepartmentConfiguration());
         modelBuilder.ApplyConfiguration(new DocumentNumberConfiguration());
         modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
@@ -194,6 +199,7 @@ public partial class StockBridgeDbContext : DbContext
         modelBuilder.ApplyConfiguration(new StockVarianceConfiguration());
         modelBuilder.ApplyConfiguration(new StoreTransferTransactionConfiguration());
         modelBuilder.ApplyConfiguration(new SupplierConfiguration());
+        modelBuilder.ApplyConfiguration(new SupplierTypeConfiguration());
         modelBuilder.ApplyConfiguration(new SystemsConfiguration());
         modelBuilder.ApplyConfiguration(new UserConfiguration());
         modelBuilder.ApplyConfiguration(new UserGroupPermissionConfiguration());
