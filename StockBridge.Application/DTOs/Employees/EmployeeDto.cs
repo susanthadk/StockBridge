@@ -8,23 +8,41 @@ public class EmployeeDto
 
     public string EmployeeCode { get; set; } = string.Empty;
 
-    public string? FirstName { get; set; }
+    public string FirstName { get; set; } = string.Empty;
+
+    public string? MiddleName { get; set; }
 
     public string? LastName { get; set; }
+
+    public string? PreferredName { get; set; }
+
+    public DateOnly? DateOfBirth { get; set; }
+
+    public int? Gender { get; set; }
+
+    public string? MobileNumber { get; set; }
+
+    public string? TelephoneNumber { get; set; }
+
+    public string? EmailAddress { get; set; }
 
     public string? AddressLine1 { get; set; }
 
     public string? AddressLine2 { get; set; }
 
-    public string? TelephoneNumber { get; set; }
+    public string? City { get; set; }
+
+    public string? PostalCode { get; set; }
+
+    public string? CountryCode { get; set; }
+
+    public int? IdentificationTypeId { get; set; }
 
     public string? IdentificationNumber { get; set; }
 
-    public string? EmployeeStatus { get; set; }
+    public int? DesignationId { get; set; }
 
-    public string? EmployeeProvidentFundNumber { get; set; }
-
-    public decimal? CommissionRate { get; set; }
+    public int? ManagerEmployeeId { get; set; }
 
     public int CreatedBy { get; set; }
 
