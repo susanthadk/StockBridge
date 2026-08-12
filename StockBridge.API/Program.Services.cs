@@ -41,6 +41,9 @@ public partial class Program
         services.AddScoped<IRepository<Supplier>, Repository<Supplier>>();
         services.AddScoped<ISupplierService, SupplierService>();
 
+        services.AddScoped<IRepository<SupplierType>, Repository<SupplierType>>();
+        services.AddScoped<ISupplierTypeService, SupplierTypeService>();
+
         services.AddScoped<IRepository<SalesRepresentative>, Repository<SalesRepresentative>>();
         services.AddScoped<ISalesRepresentativeService, SalesRepresentativeService>();
 
