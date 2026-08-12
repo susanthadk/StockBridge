@@ -23,6 +23,8 @@ public partial class Department
 
     public virtual ICollection<Category> Categories { get; set; } = new List<Category>();
 
+    public virtual ICollection<Designation> Designations { get; set; } = new List<Designation>();
+
     public virtual ICollection<Item> Items { get; set; } = new List<Item>();
 
     public virtual ICollection<Stock> Stocks { get; set; } = new List<Stock>();

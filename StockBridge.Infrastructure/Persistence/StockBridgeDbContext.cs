@@ -47,6 +47,8 @@ public partial class StockBridgeDbContext : DbContext
 
     public virtual DbSet<Department> Departments { get; set; }
 
+    public virtual DbSet<Designation> Designations { get; set; }
+
     public virtual DbSet<DocumentNumber> DocumentNumbers { get; set; }
 
     public virtual DbSet<Employee> Employees { get; set; }
@@ -66,6 +68,8 @@ public partial class StockBridgeDbContext : DbContext
     public virtual DbSet<HeaderWriteTemporary> HeaderWriteTemporaries { get; set; }
 
     public virtual DbSet<HotItem> HotItems { get; set; }
+
+    public virtual DbSet<IdentificationType> IdentificationTypes { get; set; }
 
     public virtual DbSet<InventoryHeaderTransaction> InventoryHeaderTransactions { get; set; }
 
@@ -162,6 +166,7 @@ public partial class StockBridgeDbContext : DbContext
         modelBuilder.ApplyConfiguration(new DayOffConfiguration());
         modelBuilder.ApplyConfiguration(new DeliveryMethodConfiguration());
         modelBuilder.ApplyConfiguration(new DepartmentConfiguration());
+        modelBuilder.ApplyConfiguration(new DesignationConfiguration());
         modelBuilder.ApplyConfiguration(new DocumentNumberConfiguration());
         modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
         modelBuilder.ApplyConfiguration(new EmployeeSaleConfiguration());
@@ -172,6 +177,7 @@ public partial class StockBridgeDbContext : DbContext
         modelBuilder.ApplyConfiguration(new GoodsReceiptTemporaryHeaderConfiguration());
         modelBuilder.ApplyConfiguration(new HeaderWriteTemporaryConfiguration());
         modelBuilder.ApplyConfiguration(new HotItemConfiguration());
+        modelBuilder.ApplyConfiguration(new IdentificationTypeConfiguration());
         modelBuilder.ApplyConfiguration(new InventoryHeaderTransactionConfiguration());
         modelBuilder.ApplyConfiguration(new InventoryHeaderVoucherConfiguration());
         modelBuilder.ApplyConfiguration(new InventoryLineTransactionConfiguration());
