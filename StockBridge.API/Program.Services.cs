@@ -29,6 +29,9 @@ public partial class Program
         services.AddScoped<IRepository<Department>, Repository<Department>>();
         services.AddScoped<IDepartmentService, DepartmentService>();
 
+        services.AddScoped<IRepository<Designation>, Repository<Designation>>();
+        services.AddScoped<IDesignationService, DesignationService>();
+
         services.AddScoped<IRepository<IdentificationType>, Repository<IdentificationType>>();
         services.AddScoped<IIdentificationTypeService, IdentificationTypeService>();
 
