@@ -20,7 +20,7 @@ public class InventoryHeaderTransactionConfiguration : IEntityTypeConfiguration<
         entity.Property(e => e.InventoryHeaderAmendedByUserCode).HasMaxLength(6);
         entity.Property(e => e.InventoryHeaderAmendedDate).HasColumnType("datetime");
         entity.Property(e => e.InventoryHeaderAreaCode)
-            .HasMaxLength(10)
+            .HasMaxLength(50)
             .IsUnicode(false);
         entity.Property(e => e.InventoryHeaderCashAmount).HasColumnType("decimal(18, 2)");
         entity.Property(e => e.InventoryHeaderCashDiscountAmount).HasColumnType("decimal(18, 3)");

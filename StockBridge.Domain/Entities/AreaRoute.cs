@@ -13,6 +13,8 @@ public partial class AreaRoute
 
     public string? ShortName { get; set; }
 
+    public bool IsActive { get; set; }
+
     public int CreatedBy { get; set; }
 
     public DateTime CreatedOn { get; set; }
@@ -20,8 +22,6 @@ public partial class AreaRoute
     public int? ModifiedBy { get; set; }
 
     public DateTime? ModifiedOn { get; set; }
-
-    public bool IsActive { get; set; }
-
+    
     public virtual ICollection<Customer> Customers { get; set; } = new List<Customer>();
 }

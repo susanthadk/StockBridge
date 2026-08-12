@@ -12,7 +12,9 @@ public class SalesRepresentativeConfiguration : IEntityTypeConfiguration<SalesRe
 
         entity.HasIndex(e => e.SalesRepresentativeresentativeCode, "UQ_SalesRepresentativeMaster_BusinessKey").IsUnique();
 
-        entity.Property(e => e.AreaCode).HasMaxLength(10);
+        entity.Property(e => e.AreaCode)
+            .HasMaxLength(50)
+            .IsUnicode(false);
         entity.Property(e => e.CompanyCode)
             .HasMaxLength(10)
             .IsUnicode(false);

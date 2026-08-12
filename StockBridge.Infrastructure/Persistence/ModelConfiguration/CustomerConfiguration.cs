@@ -13,7 +13,7 @@ public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
         entity.HasIndex(e => e.CustomerCode, "UQ_Customer_BusinessKey").IsUnique();
 
         entity.Property(e => e.AreaCode)
-            .HasMaxLength(10)
+            .HasMaxLength(50)
             .IsUnicode(false);
         entity.Property(e => e.CreatedOn).HasDefaultValueSql("(sysutcdatetime())", "DF_Customer_CreatedOn");
         entity.Property(e => e.CreditLimit).HasColumnType("numeric(18, 2)");
