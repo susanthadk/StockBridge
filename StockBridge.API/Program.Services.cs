@@ -74,6 +74,9 @@ public partial class Program
         services.AddScoped<IRepository<PriceList>, Repository<PriceList>>();
         services.AddScoped<IPriceListService, PriceListService>();
 
+        services.AddScoped<IRepository<OrganizationalLevel>, Repository<OrganizationalLevel>>();
+        services.AddScoped<IOrganizationalLevelService, OrganizationalLevelService>();
+
         services.AddScoped<IGoodsReceiptTemporaryRepository, GoodsReceiptTemporaryRepository>();
         services.AddScoped<IGoodsReceiptTemporaryService, GoodsReceiptTemporaryService>();
 
