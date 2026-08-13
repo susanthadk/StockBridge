@@ -97,6 +97,10 @@ public partial class StockBridgeDbContext : DbContext
 
     public virtual DbSet<PriceList> PriceLists { get; set; }
 
+    public virtual DbSet<ProductHierarchy> ProductHierarchies { get; set; }
+
+    public virtual DbSet<ProductHierarchyLevel> ProductHierarchyLevels { get; set; }
+
     public virtual DbSet<Programs> Programs { get; set; }
 
     public virtual DbSet<SalaryDetail> SalaryDetails { get; set; }
@@ -195,6 +199,8 @@ public partial class StockBridgeDbContext : DbContext
         modelBuilder.ApplyConfiguration(new OrganizationalUnitConfiguration());
         modelBuilder.ApplyConfiguration(new PaymentDetailConfiguration());
         modelBuilder.ApplyConfiguration(new PriceListConfiguration());
+        modelBuilder.ApplyConfiguration(new ProductHierarchyConfiguration());
+        modelBuilder.ApplyConfiguration(new ProductHierarchyLevelConfiguration());
         modelBuilder.ApplyConfiguration(new ProgramsConfiguration());
         modelBuilder.ApplyConfiguration(new SalaryDetailConfiguration());
         modelBuilder.ApplyConfiguration(new SalesChequeConfiguration());
