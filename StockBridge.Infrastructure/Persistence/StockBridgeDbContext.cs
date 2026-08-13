@@ -89,6 +89,10 @@ public partial class StockBridgeDbContext : DbContext
 
     public virtual DbSet<OperationHeader> OperationHeaders { get; set; }
 
+    public virtual DbSet<OrganizationalLevel> OrganizationalLevels { get; set; }
+
+    public virtual DbSet<OrganizationalUnit> OrganizationalUnits { get; set; }
+
     public virtual DbSet<PaymentDetail> PaymentDetails { get; set; }
 
     public virtual DbSet<PriceList> PriceLists { get; set; }
@@ -187,6 +191,8 @@ public partial class StockBridgeDbContext : DbContext
         modelBuilder.ApplyConfiguration(new MainLocationConfiguration());
         modelBuilder.ApplyConfiguration(new MultiItemConfiguration());
         modelBuilder.ApplyConfiguration(new OperationHeaderConfiguration());
+        modelBuilder.ApplyConfiguration(new OrganizationalLevelConfiguration());
+        modelBuilder.ApplyConfiguration(new OrganizationalUnitConfiguration());
         modelBuilder.ApplyConfiguration(new PaymentDetailConfiguration());
         modelBuilder.ApplyConfiguration(new PriceListConfiguration());
         modelBuilder.ApplyConfiguration(new ProgramsConfiguration());
