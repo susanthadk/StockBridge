@@ -74,6 +74,12 @@ public partial class Program
         services.AddScoped<IRepository<PriceList>, Repository<PriceList>>();
         services.AddScoped<IPriceListService, PriceListService>();
 
+        services.AddScoped<IRepository<ProductHierarchy>, Repository<ProductHierarchy>>();
+        services.AddScoped<IProductHierarchyService, ProductHierarchyService>();
+
+        services.AddScoped<IRepository<ProductHierarchyLevel>, Repository<ProductHierarchyLevel>>();
+        services.AddScoped<IProductHierarchyLevelService, ProductHierarchyLevelService>();
+
         services.AddScoped<IRepository<OrganizationalLevel>, Repository<OrganizationalLevel>>();
         services.AddScoped<IOrganizationalLevelService, OrganizationalLevelService>();
 
