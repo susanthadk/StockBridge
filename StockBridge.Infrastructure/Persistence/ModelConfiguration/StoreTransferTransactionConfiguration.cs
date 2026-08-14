@@ -26,12 +26,6 @@ public class StoreTransferTransactionConfiguration : IEntityTypeConfiguration<St
         entity.Property(e => e.SellingPrice).HasColumnType("decimal(18, 2)");
         entity.Property(e => e.StockCode).HasMaxLength(8);
 
-        entity.HasOne(d => d.ItemCodeNavigation).WithMany(p => p.StoreTransferTransactions)
-            .HasPrincipalKey(p => p.ItemCode)
-            .HasForeignKey(d => d.ItemCode)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_StoreTransferTransaction_Item");
-
         entity.HasOne(d => d.StockCodeNavigation).WithMany(p => p.StoreTransferTransactions)
             .HasPrincipalKey(p => p.StockCode)
             .HasForeignKey(d => d.StockCode)

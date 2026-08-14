@@ -36,6 +36,4 @@ public partial class MultiItem
     public bool IsActive { get; set; }
 
     public virtual Stock StockCodeNavigation { get; set; } = null!;
-
-    public virtual Item StockTypeCodeNavigation { get; set; } = null!;
 }

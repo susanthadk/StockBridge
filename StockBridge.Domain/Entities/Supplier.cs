@@ -71,9 +71,7 @@ public partial class Supplier
 
     public virtual DeliveryMethod? DeliveryMethod { get; set; }
 
-    public virtual ICollection<Item> Items { get; set; } = new List<Item>();
-
-    public virtual ICollection<Stock> Stocks { get; set; } = new List<Stock>();
+    public virtual ICollection<ItemSupplier> ItemSuppliers { get; set; } = new List<ItemSupplier>();
 
     public virtual SupplierType? SupplierType { get; set; }
 }

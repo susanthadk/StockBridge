@@ -26,6 +26,4 @@ public partial class Family
     public bool IsActive { get; set; }
 
     public virtual Category Category { get; set; } = null!;
-
-    public virtual ICollection<Item> Items { get; set; } = new List<Item>();
 }

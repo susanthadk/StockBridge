@@ -22,6 +22,4 @@ public partial class HotItem
     public DateTime? ModifiedOn { get; set; }
 
     public bool IsActive { get; set; }
-
-    public virtual Item? ItemCodeNavigation { get; set; }
 }

@@ -129,7 +129,5 @@ public partial class InventoryWarehouseTransaction
 
     public virtual Size? InventoryWarehouseSizeNumberNavigation { get; set; }
 
-    public virtual Item? InventoryWarehouseStockPNavigation { get; set; }
-
     public virtual ICollection<InventoryWarehouseTransactionReturn> InventoryWarehouseTransactionReturns { get; set; } = new List<InventoryWarehouseTransactionReturn>();
 }

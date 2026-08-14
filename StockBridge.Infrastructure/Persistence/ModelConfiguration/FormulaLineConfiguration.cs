@@ -21,11 +21,5 @@ public class FormulaLineConfiguration : IEntityTypeConfiguration<FormulaLine>
             .HasPrincipalKey(p => p.FormulaNumber)
             .HasForeignKey(d => d.FormulaNumber)
             .HasConstraintName("FK_FormulaLine_FormulaHeader");
-
-        entity.HasOne(d => d.ItemNumberNavigation).WithMany(p => p.FormulaLines)
-            .HasPrincipalKey(p => p.ItemCode)
-            .HasForeignKey(d => d.ItemNumber)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_FormulaLine_Item");
     }
 }

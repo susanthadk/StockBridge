@@ -82,6 +82,4 @@ public partial class FormulaLine
     public bool IsActive { get; set; }
 
     public virtual FormulaHeader FormulaNumberNavigation { get; set; } = null!;
-
-    public virtual Item ItemNumberNavigation { get; set; } = null!;
 }

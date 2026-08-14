@@ -131,7 +131,5 @@ public partial class InventoryWarehouseTransactionReturn
 
     public virtual Size? InventoryWarehouseSizeNumberNavigation { get; set; }
 
-    public virtual Item? InventoryWarehouseStockPNavigation { get; set; }
-
     public virtual InventoryWarehouseTransaction InventoryWarehouseTransaction { get; set; } = null!;
 }

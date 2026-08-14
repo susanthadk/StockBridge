@@ -65,7 +65,5 @@ public partial class Size
 
     public virtual ICollection<InventoryWarehouseTransaction> InventoryWarehouseTransactions { get; set; } = new List<InventoryWarehouseTransaction>();
 
-    public virtual ICollection<Item> Items { get; set; } = new List<Item>();
-
     public virtual ICollection<VoucherInventoryLine> VoucherInventoryLines { get; set; } = new List<VoucherInventoryLine>();
 }

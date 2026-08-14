@@ -17,10 +17,5 @@ public class HotItemConfiguration : IEntityTypeConfiguration<HotItem>
         entity.Property(e => e.Quantity)
             .HasDefaultValue(0m, "DF_HotItem_Quantity")
             .HasColumnType("decimal(18, 2)");
-
-        entity.HasOne(d => d.ItemCodeNavigation).WithMany(p => p.HotItems)
-            .HasPrincipalKey(p => p.ItemCode)
-            .HasForeignKey(d => d.ItemCode)
-            .HasConstraintName("FK_HotItem_Item");
     }
 }

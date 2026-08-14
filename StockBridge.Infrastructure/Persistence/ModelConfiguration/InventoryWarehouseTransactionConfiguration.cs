@@ -81,10 +81,5 @@ public class InventoryWarehouseTransactionConfiguration : IEntityTypeConfigurati
             .HasPrincipalKey(p => p.SizeNumber)
             .HasForeignKey(d => d.InventoryWarehouseSizeNumber)
             .HasConstraintName("FK_InventoryWarehouseTransaction_Size");
-
-        entity.HasOne(d => d.InventoryWarehouseStockPNavigation).WithMany(p => p.InventoryWarehouseTransactions)
-            .HasPrincipalKey(p => p.ItemCode)
-            .HasForeignKey(d => d.InventoryWarehouseStockP)
-            .HasConstraintName("FK_InventoryWarehouseTransaction_Item");
     }
 }

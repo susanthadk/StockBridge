@@ -107,10 +107,6 @@ public partial class Stock
 
     public virtual Department? StockDepartmentNavigation { get; set; }
 
-    public virtual Supplier? StockSupplierNavigation { get; set; }
-
-    public virtual Item StockTypeCodeNavigation { get; set; } = null!;
-
     public virtual ICollection<StockVariance> StockVariances { get; set; } = new List<StockVariance>();
 
     public virtual ICollection<StoreTransferTransaction> StoreTransferTransactions { get; set; } = new List<StoreTransferTransaction>();

@@ -27,6 +27,8 @@ public partial class StockBridgeDbContext : DbContext
 
     public virtual DbSet<BarcodeLabelDatum> BarcodeLabelData { get; set; }
 
+    public virtual DbSet<Brand> Brands { get; set; }
+
     public virtual DbSet<CashBankTransaction> CashBankTransactions { get; set; }
 
     public virtual DbSet<Category> Categories { get; set; }
@@ -83,6 +85,18 @@ public partial class StockBridgeDbContext : DbContext
 
     public virtual DbSet<Item> Items { get; set; }
 
+    public virtual DbSet<ItemBarcode> ItemBarcodes { get; set; }
+
+    public virtual DbSet<ItemPrice> ItemPrices { get; set; }
+
+    public virtual DbSet<ItemSupplier> ItemSuppliers { get; set; }
+
+    public virtual DbSet<ItemType> ItemTypes { get; set; }
+
+    public virtual DbSet<ItemUnitOfMeasure> ItemUnitOfMeasures { get; set; }
+
+    public virtual DbSet<ItemWarehouse> ItemWarehouses { get; set; }
+
     public virtual DbSet<MainLocation> MainLocations { get; set; }
 
     public virtual DbSet<MultiItem> MultiItems { get; set; }
@@ -137,6 +151,12 @@ public partial class StockBridgeDbContext : DbContext
 
     public virtual DbSet<Systems> Systems { get; set; }
 
+    public virtual DbSet<TaxCategory> TaxCategories { get; set; }
+
+    public virtual DbSet<TaxRate> TaxRates { get; set; }
+
+    public virtual DbSet<UnitOfMeasure> UnitOfMeasures { get; set; }
+
     public virtual DbSet<User> Users { get; set; }
 
     public virtual DbSet<UserGroupPermission> UserGroupPermissions { get; set; }
@@ -151,6 +171,10 @@ public partial class StockBridgeDbContext : DbContext
 
     public virtual DbSet<VoucherTemporary> VoucherTemporaries { get; set; }
 
+    public virtual DbSet<Warehouse> Warehouses { get; set; }
+
+    public virtual DbSet<WarehouseType> WarehouseTypes { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Server=.;Database=StockBridgeNew;Trusted_Connection=True;TrustServerCertificate=True;");
@@ -164,6 +188,7 @@ public partial class StockBridgeDbContext : DbContext
         modelBuilder.ApplyConfiguration(new AttendanceDetailConfiguration());
         modelBuilder.ApplyConfiguration(new BalanceTemporaryConfiguration());
         modelBuilder.ApplyConfiguration(new BarcodeLabelDatumConfiguration());
+        modelBuilder.ApplyConfiguration(new BrandConfiguration());
         modelBuilder.ApplyConfiguration(new CashBankTransactionConfiguration());
         modelBuilder.ApplyConfiguration(new CategoryConfiguration());
         modelBuilder.ApplyConfiguration(new CompanyConfiguration());
@@ -192,6 +217,12 @@ public partial class StockBridgeDbContext : DbContext
         modelBuilder.ApplyConfiguration(new InventoryWarehouseTransactionConfiguration());
         modelBuilder.ApplyConfiguration(new InventoryWarehouseTransactionReturnConfiguration());
         modelBuilder.ApplyConfiguration(new ItemConfiguration());
+        modelBuilder.ApplyConfiguration(new ItemBarcodeConfiguration());
+        modelBuilder.ApplyConfiguration(new ItemPriceConfiguration());
+        modelBuilder.ApplyConfiguration(new ItemSupplierConfiguration());
+        modelBuilder.ApplyConfiguration(new ItemTypeConfiguration());
+        modelBuilder.ApplyConfiguration(new ItemUnitOfMeasureConfiguration());
+        modelBuilder.ApplyConfiguration(new ItemWarehouseConfiguration());
         modelBuilder.ApplyConfiguration(new MainLocationConfiguration());
         modelBuilder.ApplyConfiguration(new MultiItemConfiguration());
         modelBuilder.ApplyConfiguration(new OperationHeaderConfiguration());
@@ -219,6 +250,9 @@ public partial class StockBridgeDbContext : DbContext
         modelBuilder.ApplyConfiguration(new SupplierConfiguration());
         modelBuilder.ApplyConfiguration(new SupplierTypeConfiguration());
         modelBuilder.ApplyConfiguration(new SystemsConfiguration());
+        modelBuilder.ApplyConfiguration(new TaxCategoryConfiguration());
+        modelBuilder.ApplyConfiguration(new TaxRateConfiguration());
+        modelBuilder.ApplyConfiguration(new UnitOfMeasureConfiguration());
         modelBuilder.ApplyConfiguration(new UserConfiguration());
         modelBuilder.ApplyConfiguration(new UserGroupPermissionConfiguration());
         modelBuilder.ApplyConfiguration(new VersionHeaderConfiguration());
@@ -226,6 +260,8 @@ public partial class StockBridgeDbContext : DbContext
         modelBuilder.ApplyConfiguration(new VoucherInventoryHeaderConfiguration());
         modelBuilder.ApplyConfiguration(new VoucherInventoryLineConfiguration());
         modelBuilder.ApplyConfiguration(new VoucherTemporaryConfiguration());
+        modelBuilder.ApplyConfiguration(new WarehouseConfiguration());
+        modelBuilder.ApplyConfiguration(new WarehouseTypeConfiguration());
 
         OnModelCreatingPartial(modelBuilder);
     }

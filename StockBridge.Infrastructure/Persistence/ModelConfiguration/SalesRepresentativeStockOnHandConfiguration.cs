@@ -22,12 +22,6 @@ public class SalesRepresentativeStockOnHandConfiguration : IEntityTypeConfigurat
         entity.Property(e => e.StockOnHand).HasColumnType("decimal(18, 0)");
         entity.Property(e => e.StockSizeCode).HasMaxLength(6);
 
-        entity.HasOne(d => d.ItemCodeNavigation).WithMany(p => p.SalesRepresentativeStockOnHands)
-            .HasPrincipalKey(p => p.ItemCode)
-            .HasForeignKey(d => d.ItemCode)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_SalesRepresentativeStockOnHand_Item");
-
         entity.HasOne(d => d.SalesRepresentativeresentativeCodeNavigation).WithMany(p => p.SalesRepresentativeStockOnHands)
             .HasPrincipalKey(p => p.SalesRepresentativeresentativeCode)
             .HasForeignKey(d => d.SalesRepresentativeresentativeCode)

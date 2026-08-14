@@ -39,7 +39,5 @@ public partial class StoreTransferTransaction
 
     public bool IsActive { get; set; }
 
-    public virtual Item ItemCodeNavigation { get; set; } = null!;
-
     public virtual Stock StockCodeNavigation { get; set; } = null!;
 }

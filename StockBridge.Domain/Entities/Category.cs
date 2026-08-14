@@ -26,6 +26,4 @@ public partial class Category
     public virtual Department DepartmentCodeNavigation { get; set; } = null!;
 
     public virtual ICollection<Family> Families { get; set; } = new List<Family>();
-
-    public virtual ICollection<Item> Items { get; set; } = new List<Item>();
 }

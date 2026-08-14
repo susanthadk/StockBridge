@@ -83,11 +83,6 @@ public class InventoryWarehouseTransactionReturnConfiguration : IEntityTypeConfi
             .HasForeignKey(d => d.InventoryWarehouseSizeNumber)
             .HasConstraintName("FK_InventoryWarehouseTransactionReturn_Size");
 
-        entity.HasOne(d => d.InventoryWarehouseStockPNavigation).WithMany(p => p.InventoryWarehouseTransactionReturns)
-            .HasPrincipalKey(p => p.ItemCode)
-            .HasForeignKey(d => d.InventoryWarehouseStockP)
-            .HasConstraintName("FK_InventoryWarehouseTransactionReturn_Item");
-
         entity.HasOne(d => d.InventoryWarehouseTransaction).WithMany(p => p.InventoryWarehouseTransactionReturns)
             .HasPrincipalKey(p => new { p.InventoryWarehouseType, p.InventoryWarehouseLineNumber, p.TerminalNumber })
             .HasForeignKey(d => new { d.InventoryWarehouseType, d.InventoryWarehouseLineNumber, d.TerminalNumber })

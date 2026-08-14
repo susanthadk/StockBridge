@@ -87,11 +87,6 @@ public class InventoryLineTransactionConfiguration : IEntityTypeConfiguration<In
             .HasForeignKey(d => d.InventoryLineSizeNumber)
             .HasConstraintName("FK_InventoryLineTransaction_Size");
 
-        entity.HasOne(d => d.InventoryLineStockPNavigation).WithMany(p => p.InventoryLineTransactions)
-            .HasPrincipalKey(p => p.ItemCode)
-            .HasForeignKey(d => d.InventoryLineStockP)
-            .HasConstraintName("FK_InventoryLineTransaction_Item");
-
         entity.HasOne(d => d.InventoryHeaderTransaction).WithMany(p => p.InventoryLineTransactions)
             .HasPrincipalKey(p => new { p.InventoryHeaderType, p.InventoryHeaderDocumentNumber, p.InventoryHeaderDate, p.InventoryHeaderOperationCode, p.TerminalNumber })
             .HasForeignKey(d => new { d.InventoryLineType, d.InventoryLineDocumentNumber, d.InventoryLineDate, d.InventoryLineOperationCode, d.TerminalNumber })

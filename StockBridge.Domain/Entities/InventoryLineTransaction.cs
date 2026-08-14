@@ -148,6 +148,4 @@ public partial class InventoryLineTransaction
     public virtual InventoryHeaderTransaction InventoryHeaderTransaction { get; set; } = null!;
 
     public virtual Size? InventoryLineSizeNumberNavigation { get; set; }
-
-    public virtual Item? InventoryLineStockPNavigation { get; set; }
 }

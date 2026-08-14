@@ -30,11 +30,5 @@ public class MultiItemConfiguration : IEntityTypeConfiguration<MultiItem>
             .HasPrincipalKey(p => p.StockCode)
             .HasForeignKey(d => d.StockCode)
             .HasConstraintName("FK_MultiItem_Stock");
-
-        entity.HasOne(d => d.StockTypeCodeNavigation).WithMany(p => p.MultiItems)
-            .HasPrincipalKey(p => p.ItemCode)
-            .HasForeignKey(d => d.StockTypeCode)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_MultiItem_Item");
     }
 }

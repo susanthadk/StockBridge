@@ -62,15 +62,5 @@ public class StockConfiguration : IEntityTypeConfiguration<Stock>
             .HasPrincipalKey(p => p.DepartmentCode)
             .HasForeignKey(d => d.StockDepartment)
             .HasConstraintName("FK_Stock_Department");
-
-        entity.HasOne(d => d.StockSupplierNavigation).WithMany(p => p.Stocks)
-            .HasPrincipalKey(p => p.SupplierCode)
-            .HasForeignKey(d => d.StockSupplier)
-            .HasConstraintName("FK_Stock_Supplier");
-
-        entity.HasOne(d => d.StockTypeCodeNavigation).WithMany(p => p.Stocks)
-            .HasPrincipalKey(p => p.ItemCode)
-            .HasForeignKey(d => d.StockTypeCode)
-            .HasConstraintName("FK_Stock_Item");
     }
 }
