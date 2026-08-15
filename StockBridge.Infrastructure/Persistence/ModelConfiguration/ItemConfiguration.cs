@@ -40,10 +40,6 @@ public class ItemConfiguration : IEntityTypeConfiguration<Item>
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_Item_ItemType");
 
-        entity.HasOne(d => d.ProductHierarchy).WithMany(p => p.Items)
-            .HasForeignKey(d => d.ProductHierarchyId)
-            .HasConstraintName("FK_Item_ProductHierarchy");
-
         entity.HasOne(d => d.TaxCategory).WithMany(p => p.Items)
             .HasForeignKey(d => d.TaxCategoryId)
             .HasConstraintName("FK_Item_TaxCategory");

@@ -31,8 +31,6 @@ public partial class ProductHierarchy
 
     public virtual ICollection<ProductHierarchy> InverseParentProductHierarchy { get; set; } = new List<ProductHierarchy>();
 
-    public virtual ICollection<Item> Items { get; set; } = new List<Item>();
-
     public virtual ProductHierarchy? ParentProductHierarchy { get; set; }
 
     public virtual ProductHierarchyLevel ProductHierarchyLevel { get; set; } = null!;

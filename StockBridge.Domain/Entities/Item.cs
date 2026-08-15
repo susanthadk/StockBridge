@@ -13,8 +13,6 @@ public partial class Item
 
     public string? ShortName { get; set; }
 
-    public int? ProductHierarchyId { get; set; }
-
     public int? BrandId { get; set; }
 
     public int BaseUnitOfMeasureId { get; set; }
@@ -60,8 +58,6 @@ public partial class Item
     public virtual Brand? Brand { get; set; }
 
     public virtual ItemType ItemType { get; set; } = null!;
-
-    public virtual ProductHierarchy? ProductHierarchy { get; set; }
 
     public virtual TaxCategory? TaxCategory { get; set; }
 }

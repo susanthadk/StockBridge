@@ -12,8 +12,6 @@ public class ItemDto
 
     public string? ShortName { get; set; }
 
-    public int? ProductHierarchyId { get; set; }
-
     public int? BrandId { get; set; }
 
     public int BaseUnitOfMeasureId { get; set; }
